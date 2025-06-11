@@ -19,17 +19,8 @@ SELECT * FROM invoice ORDER BY total DESC LIMIT 3;
        we made the most money. Write a query that returns one city that has the highest sum of invoice totals.
        Return both city name and sum of all invoice totals. */
 SELECT SUM(total) as invoice_total, billing_city FROM invoice GROUP BY billing_city ORDER BY invoice_total DESC LIMIT 1;
-
-/* Q5. Who is the best customer? The customer who has spent the most money will be declared the best customer. 
-	   Write a query that returns the person who has spent the most money. */
-SELECT customer.customer_id, customer.first_name, customer.last_name, SUM(invoice.total) as total 
-FROM customer 
-JOIN invoice ON customer.customer_id = invoice.customer_id
-GROUP BY customer.customer_id 
-ORDER BY total DESC 
-LIMIT 1;	
        
- /* Q6. Write query to return the email,first name, last name & genre of all Rock Music listeners. 
+ /* Q5. Write query to return the email,first name, last name & genre of all Rock Music listeners. 
         Return your list ordered alphabetically by email starting with A. */
 SELECT DISTINCT email, first_name, last_name
 FROM customer
@@ -42,7 +33,7 @@ WHERE track_id IN(
       )
 ORDER BY email;     
 
-/* Q7. Return all the track names that have a song length longer than the average length.
+/* Q6. Return all the track names that have a song length longer than the average length.
 	   Return the name and milliseconds for each track. Order by the song length with the longest songs. */
 SELECT name, milliseconds 
 FROM track 
@@ -52,7 +43,7 @@ WHERE milliseconds>(
     ) 
 ORDER BY milliseconds DESC;
 
-/* Q8. We want to find out the most popular Genre for each country. We determine the most popular genre as the genre
+/* Q7. We want to find out the most popular Genre for each country. We determine the most popular genre as the genre
 	   with the highest amount of purchases. Write a query that returns each country along with the top Genre. For
        countries where the maximum number of purchases is shared return all Genres.*/
 WITH popular_genre AS(
@@ -68,7 +59,7 @@ WITH popular_genre AS(
     )
 SELECT * FROM popular_genre WHERE RowNo  <= 1;
 
-/* Q9. Write a query that determines the customer that has spent the most on music for each country. Write a query
+/* Q8. Write a query that determines the customer that has spent the most on music for each country. Write a query
 	   that returns the country along with the top customer and how much they spent. For countries where the top amount
        spent is shared, provide all customers who spent this amount. */
 WITH RECURSIVE
