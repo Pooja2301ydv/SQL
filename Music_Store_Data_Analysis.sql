@@ -22,7 +22,7 @@ SELECT SUM(total) as invoice_total, billing_city FROM invoice GROUP BY billing_c
        
  /* Q5. Write query to return the email,first name, last name & genre of all Rock Music listeners. 
         Return your list ordered alphabetically by email starting with A. */
-SELECT DISTINCT email, first_name, last_name
+SELECT DISTINCT email, first_name, last_name 
 FROM customer
 JOIN invoice ON customer.customer_id= invoice.customer_id
 JOIN invoice_line ON invoice.invoice_id = invoice_line.invoice_id
